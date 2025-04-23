@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEET 2025 Timer</title>
     <style>
-        /* Basic Reset */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -18,11 +17,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #111; /* fallback */
+            background-color: #111; /* fallback color */
             overflow: hidden;
         }
 
-        /* Smooth loading background with enhanced contrast using overlay */
+        /* Apply filters directly to background */
         body::before {
             content: "";
             position: fixed;
@@ -33,35 +32,22 @@
             background-image: url('https://github.com/beyonder-coder/NEET-2025/blob/45d087fee69dd4fb314bb5837b4e713da190642d/marcelo-leal-k7ll1hpdhFA-unsplash.jpg?raw=true');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             background-attachment: fixed;
-            filter: contrast(115%) brightness(90%);
-            z-index: -2;
+            z-index: -1;
+            filter: brightness(1.1) contrast(1.15) saturate(1.2); /* Enhanced clarity */
             transition: filter 1s ease;
         }
 
-        /* Overlay for better readability */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
-
         .timer {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.6);
             border: 2px solid #fff;
             padding: 2rem;
-            text-align: center;
             border-radius: 10px;
             color: white;
+            text-align: center;
             width: 90%;
             max-width: 500px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         h1 {
@@ -73,11 +59,9 @@
         #countdown {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #f1f1f1;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
-        /* Responsive tweaks */
         @media (max-width: 600px) {
             .timer {
                 padding: 1.5rem;
@@ -101,17 +85,16 @@
     </div>
 
     <script>
-        // Set the target date
-        let targetTime = new Date("May 4, 2025 09:00:00").getTime();
+        const targetTime = new Date("May 4, 2025 09:00:00").getTime();
 
-        let countdownInterval = setInterval(() => {
-            let currentTime = new Date().getTime();
-            let timeDifference = targetTime - currentTime;
+        const countdownInterval = setInterval(() => {
+            const currentTime = new Date().getTime();
+            const timeDifference = targetTime - currentTime;
 
-            let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
             if (timeDifference <= 0) {
                 clearInterval(countdownInterval);
